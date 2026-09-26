@@ -15,6 +15,9 @@
     section
     section--full-width
     {{ section.settings.section_padding }}
+    {% if section.settings.background_gradient != blank %}
+      image-with-text-split--gradient
+    {% endif %}
     {% if settings.enable_section_animations and section.settings.enable_animation %}
       animation
       animation--image-with-text-split
@@ -25,6 +28,9 @@
   style="
     --text-align: {{ section.settings.content_alignment }};
     --color-background: {{ section.settings.background_color }};
+    {% if section.settings.background_gradient != blank -%}
+      background: {{ section.settings.background_gradient }};
+    {%- endif %}
     --color-text: {{ section.settings.text_color }};
     --color-text-link: {{ section.settings.text_color }};
     {% render 'overlay-button-vars',
@@ -270,6 +276,12 @@
       "id": "background_color",
       "label": "t:shared.settings.color.general.background.label",
       "default": "#D9A49C"
+    },
+    {
+      "type": "color_background",
+      "id": "background_gradient",
+      "label": "Background gradient",
+      "info": "Overrides the background color when set."
     },
     {
       "type": "color",

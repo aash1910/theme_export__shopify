@@ -44,7 +44,7 @@
     {% if section.blocks.size == 0 %}
       hidden
     {% endif %}
-    class="announcement-bar{% if section.blocks.size == 0 %} hidden{% endif %}"
+    class="announcement-bar{% if section.blocks.size == 0 %} hidden{% endif %}{% if section.settings.background_gradient != blank %} announcement-bar--gradient{% endif %}"
     data-section-id="{{ section.id }}"
     data-section-type="announcement-bar"
     data-enable-sticky-announcement-bar="{{ section.settings.enable_sticky_announcement_bar }}"
@@ -54,6 +54,9 @@
       --color-gradient-overlay: {{ section.settings.color_background | color_modify: 'alpha', 1 }};
       --color-gradient-overlay-transparent: {{ section.settings.color_background | color_modify: 'alpha', 0 }};
       --color-text: {{ section.settings.color_text }};
+      {% if section.settings.background_gradient != blank -%}
+        background: {{ section.settings.background_gradient }};
+      {%- endif %}
     "
   >
     <div class="ui-overlap-wrap">
@@ -138,6 +141,12 @@
       "type": "color",
       "label": "t:sections.announcement_bar.settings.color_background.label",
       "default": "#000000"
+    },
+    {
+      "type": "color_background",
+      "id": "background_gradient",
+      "label": "Background gradient",
+      "info": "Overrides the background color when set."
     },
     {
       "id": "color_text",

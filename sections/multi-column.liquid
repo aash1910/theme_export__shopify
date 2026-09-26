@@ -20,6 +20,9 @@
     multi-column--column-content-alignment-mobile-{{ section.settings.column_alignment_mobile }}
     multi-column--column-content-vertical-alignment-{{ section.settings.content_vertical_alignment }}
     multi-column--column-content-padding-{{ section.settings.content_background_padding }}
+    {% if section.settings.background_gradient != blank %}
+      multi-column--gradient
+    {% endif %}
     {% if settings.enable_section_animations and section.settings.enable_animation %}
       animation
       animation--multi-column
@@ -28,6 +31,9 @@
   style="
     --color-text: {{ section.settings.text_color }};
     --color-section-background: {{ section.settings.background_color }};
+    {% if section.settings.background_gradient != blank -%}
+      background: {{ section.settings.background_gradient }};
+    {%- endif %}
     --grid-columns-desktop: {{ section.settings.columns }};
     --grid-columns-mobile: {{ section.settings.columns_mobile }};
     --grid-gap-column-desktop: {{ section.settings.column_spacing }}px;
@@ -360,6 +366,12 @@
       "type": "color",
       "id": "background_color",
       "label": "t:shared.settings.color.general.background.label"
+    },
+    {
+      "type": "color_background",
+      "id": "background_gradient",
+      "label": "Background gradient",
+      "info": "Overrides the background color when set."
     },
     {
       "type": "color",
