@@ -1,0 +1,230 @@
+{% comment %} <div
+  class="meganav__nav{% if meganav_settings.show_column_borders %} with-column-dividers{% endif %}"
+  data-column-count="{{ meganav_settings.column_count }}"
+>
+  <ul class="meganav__list-parent" depth="0">
+    {% for link in link.links %}
+      <li class="{% if link.links.size > 0 %} has-children{% endif %}" depth="0">
+        <h4>
+          <a href="{{ link.url }}">{{ link.title }} </a>
+        </h4>
+        {% if link.links %}
+          <ul depth="1">
+            {% for link in link.links %}
+              <li>
+                <a href="{{ link.url }}">{{ link.title }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+  {% assign dividers_needed = meganav_settings.column_count | minus: 1 %}
+  {%- for i in (1..dividers_needed) -%}
+    <span class="meganav__column-rule" data-index="{{ forloop.index }}"></span>
+  {%- endfor -%}
+</div> {% endcomment %}
+
+<div
+  class="meganav__nav{% if meganav_settings.show_column_borders %} with-column-dividers{% endif %}"
+  data-column-count="{{ meganav_settings.column_count }}"
+>
+
+  <ul class="meganav__list-parent" depth="0">
+    {% for link in link.links %}
+
+      {% assign handle = link.url | split: '/collections/' | last | split: '?' | first %}
+      {% assign collection = collections[handle] %}
+
+      
+      <li class="{% if link.links.size > 0 %} has-children{% endif %}" depth="0">
+        {% comment %} <h4>
+          <a style="text-decoration:none;" href="{{ link.url }}">
+            
+            {% if collection and collection.image %}
+              <img 
+                src="{{ collection.image | image_url: width: 300 }}" 
+                alt="{{ collection.title }}"
+                style="width:100%; height:auto;"
+              >
+            {% else %}
+            {{ link.title }}
+            {% endif %}
+
+          </a>
+        </h4> {% endcomment %}
+
+          {% comment %} <h4>
+            <a style="text-decoration:none;" href="{{ link.url }}">
+
+              {% if link.url == '/collections/aeropostale' %}
+
+                <img src="{{ 'aeropostale_logo.png' | asset_url }}" alt="Aeropostale">
+
+              {% elsif link.url == '/collections/bcbg' %}
+
+                <img src="{{ 'bcbg.png' | asset_url }}" alt="BCBG">
+
+              {% elsif link.url == '/collections/catherine-malandrino' %}
+
+                <img src="{{ 'cm_logo.png' | asset_url }}" alt="CM">
+
+              {% elsif link.url == '/collections/english-laundry' %}
+
+                <img src="{{ 'el_logo.png' | asset_url }}" alt="English Laundry">
+
+              {% elsif link.url == '/collections/forever-21' %}
+
+                <img src="{{ 'f21_logo.png' | asset_url }}" alt="Forever 21">
+
+              {% elsif link.url == '/collections/maeve-ellis' %}
+
+                <img src="{{ 'me_logo.png' | asset_url }}" alt="Maeve Ellis">
+
+              {% elsif link.url == '/collections/joseph-abboud' %}
+
+                <img src="{{ 'ja_logo.png' | asset_url }}" alt="Joseph Abboud">
+
+              {% elsif link.url == '/collections/juicy-couture' %}
+
+                <img src="{{ 'jc_logo.png' | asset_url }}" alt="Juicy Couture">
+
+              {% elsif link.url == '/collections/kensie' %}
+
+                <img src="{{ 'kenise_logo.png' | asset_url }}" alt="kensie">
+
+              {% elsif link.url == '/collections/memoire-archives' %}
+
+                <img src="{{ 'ma_logo.png' | asset_url }}" alt="Memoire Archives">
+
+              {% elsif link.url == '/collections/nanette-lepore' %}
+
+                <img src="{{ 'nl_logo.png' | asset_url }}" alt="Nanette Lepore">
+
+              {% elsif link.url == '/collections/nautica-home' %}
+
+                <img src="{{ 'nautica_logo.png' | asset_url }}" alt="Nautica Home">
+
+              {% elsif link.url == '/collections/nicole-miller' %}
+
+                <img src="{{ 'nm_logo.png' | asset_url }}" alt="Nicole Miller">
+
+              {% elsif link.url == '/collections/ocean-pacific' %}
+
+                <img src="{{ 'op_logo.png' | asset_url }}" alt="Ocean Pacific">
+
+              {% elsif link.url == '/collections/perry-ellis' %}
+
+                <img src="{{ 'pe_logo.png' | asset_url }}" alt="Perry Ellis">
+
+              {% elsif link.url == '/collections/realtree' %}
+
+                <img src="{{ 'realtree_logo.png' | asset_url }}" alt="Realtree">
+
+              {% else %}
+
+                {{ link.title }}
+
+              {% endif %}
+
+            </a>
+          </h4> {% endcomment %}
+
+      <h4 class="brand-menu-item">
+        <a class="brand-menu-link" href="{{ link.url }}">
+
+          {% if link.url == '/collections/aeropostale' %}
+
+            <img src="{{ 'aeropostale_logo.png' | asset_url }}" alt="Aeropostale">
+
+          {% elsif link.url == '/collections/bcbg' %}
+
+            <img src="{{ 'bcbg.png' | asset_url }}" alt="BCBG">
+
+          {% elsif link.url == '/collections/catherine-malandrino' %}
+
+            <img src="{{ 'cm_logo.png' | asset_url }}" alt="CM">
+
+          {% elsif link.url == '/collections/english-laundry' %}
+
+            <img src="{{ 'el_logo.png' | asset_url }}" alt="English Laundry">
+
+          {% elsif link.url == '/collections/forever-21' %}
+
+            <img src="{{ 'f21_logo.png' | asset_url }}" alt="Forever 21">
+
+          {% elsif link.url == '/collections/maeve-ellis' %}
+
+            <img src="{{ 'me_logo.png' | asset_url }}" alt="Maeve Ellis">
+
+          {% elsif link.url == '/collections/joseph-abboud' %}
+
+            <img src="{{ 'ja_logo.png' | asset_url }}" alt="Joseph Abboud">
+
+          {% elsif link.url == '/collections/juicy-couture' %}
+
+            <img src="{{ 'jc_logo.png' | asset_url }}" alt="Juicy Couture">
+
+          {% elsif link.url == '/collections/kensie' %}
+
+            <img src="{{ 'kenise_logo.png' | asset_url }}" alt="kensie">
+
+          {% elsif link.url == '/collections/memoire-archives' %}
+
+            <img src="{{ 'ma_logo.png' | asset_url }}" alt="Memoire Archives">
+
+          {% elsif link.url == '/collections/nanette-lepore' %}
+
+            <img src="{{ 'nl_logo.png' | asset_url }}" alt="Nanette Lepore">
+
+          {% elsif link.url == '/collections/nautica-home' %}
+
+            <img src="{{ 'nautica_logo.png' | asset_url }}" alt="Nautica Home">
+
+          {% elsif link.url == '/collections/nicole-miller' %}
+
+            <img src="{{ 'nm_logo.png' | asset_url }}" alt="Nicole Miller">
+
+          {% elsif link.url == '/collections/ocean-pacific' %}
+
+            <img src="{{ 'op_logo.png' | asset_url }}" alt="Ocean Pacific">
+
+          {% elsif link.url == '/collections/perry-ellis' %}
+
+            <img src="{{ 'pe_logo.png' | asset_url }}" alt="Perry Ellis">
+
+          {% elsif link.url == '/collections/realtree' %}
+
+            <img src="{{ 'realtree_logo_black.png' | asset_url }}" alt="Realtree">
+
+          {% else %}
+
+            {{ link.title }}
+
+          {% endif %}
+
+        </a>
+      </h4>
+
+        {% if link.links %}
+          <ul depth="1">
+            {% for child_link in link.links %}
+              <li>
+                <a href="{{ child_link.url }}">{{ child_link.title }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+
+      </li>
+
+
+    {% endfor %}
+  </ul>
+
+  {% assign dividers_needed = meganav_settings.column_count | minus: 1 %}
+  {%- for i in (1..dividers_needed) -%}
+    <span class="meganav__column-rule" data-index="{{ forloop.index }}"></span>
+  {%- endfor -%}
+</div>
