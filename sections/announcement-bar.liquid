@@ -50,12 +50,16 @@
     data-enable-sticky-announcement-bar="{{ section.settings.enable_sticky_announcement_bar }}"
     data-item-count="{{ section.blocks.size }}"
     style="
-      --color-background: {{ section.settings.color_background }};
-      --color-gradient-overlay: {{ section.settings.color_background | color_modify: 'alpha', 1 }};
-      --color-gradient-overlay-transparent: {{ section.settings.color_background | color_modify: 'alpha', 0 }};
       --color-text: {{ section.settings.color_text }};
       {% if section.settings.background_gradient != blank -%}
+        --color-background: transparent;
+        --color-gradient-overlay: transparent;
+        --color-gradient-overlay-transparent: transparent;
         background: {{ section.settings.background_gradient }};
+      {%- else -%}
+        --color-background: {{ section.settings.color_background }};
+        --color-gradient-overlay: {{ section.settings.color_background | color_modify: 'alpha', 1 }};
+        --color-gradient-overlay-transparent: {{ section.settings.color_background | color_modify: 'alpha', 0 }};
       {%- endif %}
     "
   >

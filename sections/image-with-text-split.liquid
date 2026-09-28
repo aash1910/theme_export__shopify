@@ -27,9 +27,11 @@
   data-section-type="image-with-text-split"
   style="
     --text-align: {{ section.settings.content_alignment }};
-    --color-background: {{ section.settings.background_color }};
     {% if section.settings.background_gradient != blank -%}
+      --color-background: transparent;
       background: {{ section.settings.background_gradient }};
+    {%- else -%}
+      --color-background: {{ section.settings.background_color }};
     {%- endif %}
     --color-text: {{ section.settings.text_color }};
     --color-text-link: {{ section.settings.text_color }};
