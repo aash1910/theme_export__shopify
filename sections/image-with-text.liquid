@@ -28,6 +28,14 @@
   {{ section.settings.section_padding }}
 {%- endcapture -%}
 
+{%- if section.settings.background_gradient != blank -%}
+  <style>
+    #shopify-section-{{ section.id }} {
+      background: {{ section.settings.background_gradient }};
+    }
+  </style>
+{%- endif -%}
+
 <div
   class="
     image-with-text
@@ -50,7 +58,11 @@
   data-section-id="{{ section.id }}"
   data-section-type="image-with-text"
   style="
-    --section-background-color: {{ section.settings.background_color }};
+    {% if section.settings.background_gradient != blank -%}
+      --section-background-color: transparent;
+    {%- else -%}
+      --section-background-color: {{ section.settings.background_color }};
+    {%- endif %}
     --color-text: {{ section.settings.text_color }};
     --color-text-alpha-60: {{ section.settings.text_color | color_modify: 'alpha', 0.6 }};
     --color-text-link: {{ section.settings.text_color }};
@@ -379,6 +391,12 @@
       "type": "color",
       "id": "background_color",
       "label": "t:shared.settings.color.general.background.label"
+    },
+    {
+      "type": "color_background",
+      "id": "background_gradient",
+      "label": "Background gradient",
+      "info": "Overrides the background color when set."
     },
     {
       "type": "color",
